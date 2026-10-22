@@ -19,7 +19,7 @@ names = ["uring-http", "dns-stub-rs"]
 [[group]]
 title = "Seguridad de sandbox / Sandbox security"
 intro = "seccomp y Landlock probados contra el kernel real en CI. / seccomp and Landlock tested against the real kernel in CI."
-names = ["seccomp-trace-diff", "landlock-smoke"]
+names = ["seccomp-trace-diff", "landlock-smoke", "proc-maps-guard"]
 
 [[group]]
 title = "Embebido / Embedded"
@@ -40,6 +40,11 @@ names = [
   "cortex9-fwm-x11-rust",
   "cortex9-termica-predictiva",
   "cortex9-poincare-fs",
+  "cortex9-raft-sim",
+  "cortex9-lsm-engine",
+  "cortex9-wal-btree",
+  "cortex9-wasm-vm",
+  "cortex9-epoch-gc",
 ]
 
 [[group]]
@@ -97,3 +102,18 @@ status = "Control de hardware no verificado / Hardware control not verified — 
 [repos.cortex9-poincare-fs]
 description = "Read-only FUSE filesystem with Poincaré-ball embeddings (Rust)."
 status = "Auditado: valor no demostrado / Audited: value not demonstrated — [AUDIT.md](https://github.com/federiconbaez/cortex9-poincare-fs/blob/HEAD/AUDIT.md)"
+
+[repos.cortex9-raft-sim]
+status = "Valor no auditado / Value not audited"
+
+[repos.cortex9-lsm-engine]
+status = "Valor no auditado / Value not audited"
+
+[repos.cortex9-wal-btree]
+status = "Valor no auditado / Value not audited"
+
+[repos.cortex9-wasm-vm]
+status = "Valor no auditado / Value not audited"
+
+[repos.cortex9-epoch-gc]
+status = "Valor no auditado / Value not audited"
