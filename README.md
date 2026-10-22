@@ -15,11 +15,22 @@ Rust y C++ con loom, Miri y sanitizers en CI. / Rust and C++ with loom, Miri and
 |---|---|---|---|
 | [lockfree-mpmc](https://github.com/federiconbaez/lockfree-mpmc) | Rust | Bounded lock-free MPMC queue (Vyukov); loom + Miri; Criterion vs crossbeam/std. | [![CI](https://github.com/federiconbaez/lockfree-mpmc/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/lockfree-mpmc/actions/workflows/ci.yml) |
 | [arena-slab-cpp](https://github.com/federiconbaez/arena-slab-cpp) | C++ | C++20 arena + slab allocators with ASan/TSan/fuzz and honest benches vs malloc/jemalloc. | [![CI](https://github.com/federiconbaez/arena-slab-cpp/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/arena-slab-cpp/actions/workflows/ci.yml) |
-| [uring-http](https://github.com/federiconbaez/uring-http) | Rust | Minimal HTTP/1.1 server in Rust on raw io_uring, no async runtime. Tested with Miri and ASan. | [![CI](https://github.com/federiconbaez/uring-http/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/uring-http/actions/workflows/ci.yml) |
 | [spsc-c11](https://github.com/federiconbaez/spsc-c11) | C | Lock-free single-producer/single-consumer ring in C11: cached indices, batching, TSan-verified with a negative control, x86-64 and AArch64 CI | [![CI](https://github.com/federiconbaez/spsc-c11/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/spsc-c11/actions/workflows/ci.yml) |
+| [intrusive-list-cpp](https://github.com/federiconbaez/intrusive-list-cpp) | C++ | Header-only C++20 intrusive doubly linked list: allocation-free push/pop/splice, stable sort, safe and auto-unlink hooks, multi-list tags | [![CI](https://github.com/federiconbaez/intrusive-list-cpp/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/intrusive-list-cpp/actions/workflows/ci.yml) |
 | [crc32c-portable](https://github.com/federiconbaez/crc32c-portable) | C++ | CRC-32C in C++20: slicing-by-8, SSE4.2 and ARMv8 CRC backends with runtime dispatch, combine(), fuzzed and sanitized | [![CI](https://github.com/federiconbaez/crc32c-portable/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/crc32c-portable/actions/workflows/ci.yml) |
 | [bptree-wal](https://github.com/federiconbaez/bptree-wal) | Rust | On-disk B+tree with a redo WAL of page images: atomic transactions, checkpoints, and recovery tested against truncation, bit flips and real SIGKILL | [![CI](https://github.com/federiconbaez/bptree-wal/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/bptree-wal/actions/workflows/ci.yml) |
+| [mmap-wal-log](https://github.com/federiconbaez/mmap-wal-log) | Rust | Append-only log on a memory-mapped file: CRC32C per record, torn-tail recovery, salvage reader, SIGKILL-tested | [![CI](https://github.com/federiconbaez/mmap-wal-log/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/mmap-wal-log/actions/workflows/ci.yml) |
+| [tiny-jit-x64](https://github.com/federiconbaez/tiny-jit-x64) | C++ | Minimal x86-64 JIT for integer expressions: hand-emitted machine code, W^X pages, differential tests against an interpreter | [![CI](https://github.com/federiconbaez/tiny-jit-x64/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/tiny-jit-x64/actions/workflows/ci.yml) |
 | [ffi-cbindgen-demo](https://github.com/federiconbaez/ffi-cbindgen-demo) | Rust | O(1) LRU cache in Rust exposed to C and C++ via cbindgen: panic-safe C ABI, ownership rules, RAII wrapper, ASan/UBSan + Miri. | [![CI](https://github.com/federiconbaez/ffi-cbindgen-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/ffi-cbindgen-demo/actions/workflows/ci.yml) |
+
+## Redes / Networking
+
+Sin runtime async ni crates de red; CI sin red externa (loopback y respuestas grabadas). / No async runtime or networking crates; CI without external network (loopback and recorded responses).
+
+| Repo | Lenguaje / Language | Descripción / Description | CI |
+|---|---|---|---|
+| [uring-http](https://github.com/federiconbaez/uring-http) | Rust | Minimal HTTP/1.1 server in Rust on raw io_uring, no async runtime. Tested with Miri and ASan. | [![CI](https://github.com/federiconbaez/uring-http/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/uring-http/actions/workflows/ci.yml) |
+| [dns-stub-rs](https://github.com/federiconbaez/dns-stub-rs) | Rust | Stub DNS resolver for A/AAAA: strict UDP response matching, TCP fallback, CNAME chains, positive and negative TTL cache; std only | [![CI](https://github.com/federiconbaez/dns-stub-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/dns-stub-rs/actions/workflows/ci.yml) |
 
 ## Seguridad de sandbox / Sandbox security
 
@@ -37,6 +48,7 @@ Firmware bare-metal en QEMU y código freestanding para Cortex-M. / Bare-metal f
 | Repo | Lenguaje / Language | Descripción / Description | CI |
 |---|---|---|---|
 | [qemu-riscv32-uart](https://github.com/federiconbaez/qemu-riscv32-uart) | C | Bare-metal RV32 firmware for QEMU virt: own startup, NS16550A UART driver, CLINT timer interrupts, trap handling, exit codes for CI. | [![CI](https://github.com/federiconbaez/qemu-riscv32-uart/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/qemu-riscv32-uart/actions/workflows/ci.yml) |
+| [qemu-cortex-m-blink](https://github.com/federiconbaez/qemu-cortex-m-blink) | C | Bare-metal Cortex-M3 firmware: Morse SOS on the LM3S6965 LED from SysTick, self-checking in QEMU with a semihosting exit code | [![CI](https://github.com/federiconbaez/qemu-cortex-m-blink/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/qemu-cortex-m-blink/actions/workflows/ci.yml) |
 | [cobs-frame](https://github.com/federiconbaez/cobs-frame) | C | COBS + CRC-16 framing for serial links in freestanding C99: streaming receiver, 11 canonical vectors, fuzzed, 600 B on Cortex-M0 | [![CI](https://github.com/federiconbaez/cobs-frame/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/cobs-frame/actions/workflows/ci.yml) |
 
 ## Cortex-9

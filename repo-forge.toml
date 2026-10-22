@@ -9,7 +9,12 @@ exclude = ["federiconbaez"]
 [[group]]
 title = "Bajo nivel / Low-level systems"
 intro = "Rust y C++ con loom, Miri y sanitizers en CI. / Rust and C++ with loom, Miri and sanitizers in CI."
-names = ["lockfree-mpmc", "arena-slab-cpp", "uring-http", "spsc-c11", "crc32c-portable", "bptree-wal", "ffi-cbindgen-demo"]
+names = ["lockfree-mpmc", "arena-slab-cpp", "spsc-c11", "intrusive-list-cpp", "crc32c-portable", "bptree-wal", "mmap-wal-log", "tiny-jit-x64", "ffi-cbindgen-demo"]
+
+[[group]]
+title = "Redes / Networking"
+intro = "Sin runtime async ni crates de red; CI sin red externa (loopback y respuestas grabadas). / No async runtime or networking crates; CI without external network (loopback and recorded responses)."
+names = ["uring-http", "dns-stub-rs"]
 
 [[group]]
 title = "Seguridad de sandbox / Sandbox security"
@@ -19,7 +24,7 @@ names = ["seccomp-trace-diff", "landlock-smoke"]
 [[group]]
 title = "Embebido / Embedded"
 intro = "Firmware bare-metal en QEMU y código freestanding para Cortex-M. / Bare-metal firmware on QEMU and freestanding code for Cortex-M."
-names = ["qemu-riscv32-uart", "cobs-frame"]
+names = ["qemu-riscv32-uart", "qemu-cortex-m-blink", "cobs-frame"]
 
 [[group]]
 title = "Cortex-9"
