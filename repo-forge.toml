@@ -9,7 +9,17 @@ exclude = ["federiconbaez"]
 [[group]]
 title = "Bajo nivel / Low-level systems"
 intro = "Rust y C++ con loom, Miri y sanitizers en CI. / Rust and C++ with loom, Miri and sanitizers in CI."
-names = ["lockfree-mpmc", "arena-slab-cpp", "uring-http"]
+names = ["lockfree-mpmc", "arena-slab-cpp", "uring-http", "spsc-c11", "crc32c-portable", "bptree-wal", "ffi-cbindgen-demo"]
+
+[[group]]
+title = "Seguridad de sandbox / Sandbox security"
+intro = "seccomp y Landlock probados contra el kernel real en CI. / seccomp and Landlock tested against the real kernel in CI."
+names = ["seccomp-trace-diff", "landlock-smoke"]
+
+[[group]]
+title = "Embebido / Embedded"
+intro = "Firmware bare-metal en QEMU y código freestanding para Cortex-M. / Bare-metal firmware on QEMU and freestanding code for Cortex-M."
+names = ["qemu-riscv32-uart", "cobs-frame"]
 
 [[group]]
 title = "Cortex-9"
@@ -34,7 +44,7 @@ names = ["mcp-server-rs", "mcp-base", "mcp-auth-hardened", "mcp-memory-first", "
 
 [[group]]
 title = "Herramientas / Tooling"
-names = ["bench-verify", "repo-forge"]
+names = ["bench-verify", "repo-forge", "crate-audit-checklist"]
 
 [repos.lockfree-mpmc]
 description = "Bounded lock-free MPMC queue (Vyukov); loom + Miri; Criterion vs crossbeam/std."

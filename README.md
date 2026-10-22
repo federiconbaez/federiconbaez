@@ -16,6 +16,28 @@ Rust y C++ con loom, Miri y sanitizers en CI. / Rust and C++ with loom, Miri and
 | [lockfree-mpmc](https://github.com/federiconbaez/lockfree-mpmc) | Rust | Bounded lock-free MPMC queue (Vyukov); loom + Miri; Criterion vs crossbeam/std. | [![CI](https://github.com/federiconbaez/lockfree-mpmc/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/lockfree-mpmc/actions/workflows/ci.yml) |
 | [arena-slab-cpp](https://github.com/federiconbaez/arena-slab-cpp) | C++ | C++20 arena + slab allocators with ASan/TSan/fuzz and honest benches vs malloc/jemalloc. | [![CI](https://github.com/federiconbaez/arena-slab-cpp/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/arena-slab-cpp/actions/workflows/ci.yml) |
 | [uring-http](https://github.com/federiconbaez/uring-http) | Rust | Minimal HTTP/1.1 server in Rust on raw io_uring, no async runtime. Tested with Miri and ASan. | [![CI](https://github.com/federiconbaez/uring-http/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/uring-http/actions/workflows/ci.yml) |
+| [spsc-c11](https://github.com/federiconbaez/spsc-c11) | C | Lock-free single-producer/single-consumer ring in C11: cached indices, batching, TSan-verified with a negative control, x86-64 and AArch64 CI | [![CI](https://github.com/federiconbaez/spsc-c11/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/spsc-c11/actions/workflows/ci.yml) |
+| [crc32c-portable](https://github.com/federiconbaez/crc32c-portable) | C++ | CRC-32C in C++20: slicing-by-8, SSE4.2 and ARMv8 CRC backends with runtime dispatch, combine(), fuzzed and sanitized | [![CI](https://github.com/federiconbaez/crc32c-portable/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/crc32c-portable/actions/workflows/ci.yml) |
+| [bptree-wal](https://github.com/federiconbaez/bptree-wal) | Rust | On-disk B+tree with a redo WAL of page images: atomic transactions, checkpoints, and recovery tested against truncation, bit flips and real SIGKILL | [![CI](https://github.com/federiconbaez/bptree-wal/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/bptree-wal/actions/workflows/ci.yml) |
+| [ffi-cbindgen-demo](https://github.com/federiconbaez/ffi-cbindgen-demo) | Rust | O(1) LRU cache in Rust exposed to C and C++ via cbindgen: panic-safe C ABI, ownership rules, RAII wrapper, ASan/UBSan + Miri. | [![CI](https://github.com/federiconbaez/ffi-cbindgen-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/ffi-cbindgen-demo/actions/workflows/ci.yml) |
+
+## Seguridad de sandbox / Sandbox security
+
+seccomp y Landlock probados contra el kernel real en CI. / seccomp and Landlock tested against the real kernel in CI.
+
+| Repo | Lenguaje / Language | Descripción / Description | CI |
+|---|---|---|---|
+| [seccomp-trace-diff](https://github.com/federiconbaez/seccomp-trace-diff) | Rust | Analyze and diff seccomp-bpf filters (x86_64): reachable actions per syscall, arch/x32 bypass checks, CI regression gate. Verified against the Linux kernel. | [![CI](https://github.com/federiconbaez/seccomp-trace-diff/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/seccomp-trace-diff/actions/workflows/ci.yml) |
+| [landlock-smoke](https://github.com/federiconbaez/landlock-smoke) | Rust | Landlock LSM over raw syscalls: sandboxing exec wrapper and a kernel self-test matrix (fs, REFER, TRUNCATE, TCP, IPC scopes) | [![CI](https://github.com/federiconbaez/landlock-smoke/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/landlock-smoke/actions/workflows/ci.yml) |
+
+## Embebido / Embedded
+
+Firmware bare-metal en QEMU y código freestanding para Cortex-M. / Bare-metal firmware on QEMU and freestanding code for Cortex-M.
+
+| Repo | Lenguaje / Language | Descripción / Description | CI |
+|---|---|---|---|
+| [qemu-riscv32-uart](https://github.com/federiconbaez/qemu-riscv32-uart) | C | Bare-metal RV32 firmware for QEMU virt: own startup, NS16550A UART driver, CLINT timer interrupts, trap handling, exit codes for CI. | [![CI](https://github.com/federiconbaez/qemu-riscv32-uart/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/qemu-riscv32-uart/actions/workflows/ci.yml) |
+| [cobs-frame](https://github.com/federiconbaez/cobs-frame) | C | COBS + CRC-16 framing for serial links in freestanding C99: streaming receiver, 11 canonical vectors, fuzzed, 600 B on Cortex-M0 | [![CI](https://github.com/federiconbaez/cobs-frame/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/cobs-frame/actions/workflows/ci.yml) |
 
 ## Cortex-9
 
@@ -53,6 +75,7 @@ Servidores MCP escritos desde cero (Python stdlib y Rust), validados entre sí p
 |---|---|---|---|
 | [bench-verify](https://github.com/federiconbaez/bench-verify) | Rust | Re-run a benchmark claim N times; median + bootstrap CI; PASS/FAIL vs TOML threshold (JSON). | [![CI](https://github.com/federiconbaez/bench-verify/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/bench-verify/actions/workflows/ci.yml) |
 | [repo-forge](https://github.com/federiconbaez/repo-forge) | Rust | Rust CLI: husky commit lint + hook, identity check, history leak scan, Rust/C++ scaffolds, gh CI status and profile README rendering | [![CI](https://github.com/federiconbaez/repo-forge/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/repo-forge/actions/workflows/ci.yml) |
+| [crate-audit-checklist](https://github.com/federiconbaez/crate-audit-checklist) | Rust | Reproducible Rust crate review checklist: tests, clippy, fmt, cargo-audit, unsafe SAFETY hygiene, metadata and Miri, scored JSON report with a schema | [![CI](https://github.com/federiconbaez/crate-audit-checklist/actions/workflows/ci.yml/badge.svg)](https://github.com/federiconbaez/crate-audit-checklist/actions/workflows/ci.yml) |
 
 <!-- repo-forge:end -->
 
