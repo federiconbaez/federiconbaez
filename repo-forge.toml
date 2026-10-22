@@ -1,0 +1,84 @@
+# Render config for `repo-forge profile render` (https://github.com/federiconbaez/repo-forge).
+# repo-forge profile render --config repo-forge.toml --owner federiconbaez --readme README.md
+owner = "federiconbaez"
+workflow = "ci.yml"
+heading_level = 2
+ungrouped = "omit"
+exclude = ["federiconbaez"]
+
+[[group]]
+title = "Bajo nivel / Low-level systems"
+intro = "Rust y C++ con loom, Miri y sanitizers en CI. / Rust and C++ with loom, Miri and sanitizers in CI."
+names = ["lockfree-mpmc", "arena-slab-cpp", "uring-http"]
+
+[[group]]
+title = "Cortex-9"
+intro = "Cada fila enlaza al estado de su auditoría o verificación; \"no auditado\" significa exactamente eso. / Each row links to its audit or verification status; \"not audited\" means exactly that."
+names = [
+  "cortex9-shm-ring-bus",
+  "cortex9-memoria-unificada",
+  "cortex9-elf-zk-loader",
+  "cortex9-xdp-semantic-firewall",
+  "cortex9-jitter-exfil",
+  "cortex9-sched-entropia",
+  "cortex9-snapshots-enjambre",
+  "cortex9-fwm-x11-rust",
+  "cortex9-termica-predictiva",
+  "cortex9-poincare-fs",
+]
+
+[[group]]
+title = "Familia MCP / MCP family"
+intro = "Servidores MCP escritos desde cero (Python stdlib y Rust), validados entre sí por mcp-crosscheck. / MCP servers written from scratch (Python stdlib and Rust), cross-validated by mcp-crosscheck."
+names = ["mcp-server-rs", "mcp-base", "mcp-auth-hardened", "mcp-memory-first", "mcp-resource-heavy", "mcp-crosscheck"]
+
+[[group]]
+title = "Herramientas / Tooling"
+names = ["bench-verify", "repo-forge"]
+
+[repos.lockfree-mpmc]
+description = "Bounded lock-free MPMC queue (Vyukov); loom + Miri; Criterion vs crossbeam/std."
+
+[repos.cortex9-shm-ring-bus]
+description = "Lock-free SPSC ring over /dev/shm (Rust) with C/C++/Go/Python clients."
+status = "No auditado de forma independiente / Not independently audited — [BENCH.md](https://github.com/federiconbaez/cortex9-shm-ring-bus/blob/HEAD/BENCH.md)"
+
+[repos.cortex9-memoria-unificada]
+ci = false
+description = "C++20 tiered GPU/RAM/disk memory manager."
+status = "Auditado: pasa el umbral #5 (B+) / Audited: passes threshold #5 (B+) — [AUDIT-valor.md](https://github.com/federiconbaez/cortex9-memoria-unificada/blob/HEAD/AUDIT-valor.md)"
+
+[repos.cortex9-elf-zk-loader]
+ci = false
+description = "Signed-only ELF loader + seccomp supervisor (Rust)."
+status = "Auditado **FAIL**: 122/143 (85.3 %) vs 100 %; v0.3 no auditado / Audited **FAIL**; v0.3 not audited — [AUDIT-valor.md](https://github.com/federiconbaez/cortex9-elf-zk-loader/blob/HEAD/AUDIT-valor.md)"
+
+[repos.cortex9-xdp-semantic-firewall]
+ci = false
+description = "XDP semantic firewall for MCP/gRPC payloads (eBPF + Rust/aya)."
+status = "Auditado: **no** alcanza su umbral de valor / Audited: **fails** its value threshold — [AUDIT-valor.md](https://github.com/federiconbaez/cortex9-xdp-semantic-firewall/blob/HEAD/AUDIT-valor.md)"
+
+[repos.cortex9-jitter-exfil]
+description = "Timing-jitter covert-channel detector on SSL writes (Rust)."
+status = "Valor no auditado / Value not audited — [VALOR.md](https://github.com/federiconbaez/cortex9-jitter-exfil/blob/HEAD/VALOR.md)"
+
+[repos.cortex9-sched-entropia]
+description = "sched_ext (eBPF + Rust) scheduler weighting threads by prompt entropy."
+status = "Valor no auditado / Value not audited — [LIMITES.md](https://github.com/federiconbaez/cortex9-sched-entropia/blob/HEAD/LIMITES.md)"
+
+[repos.cortex9-snapshots-enjambre]
+description = "Memory snapshot/restore for a swarm of agent processes (Rust)."
+status = "Auditado: **no** alcanza su umbral en general / Audited: **fails** its threshold overall — [AUDIT-valor.md](https://github.com/federiconbaez/cortex9-snapshots-enjambre/blob/HEAD/AUDIT-valor.md)"
+
+[repos.cortex9-fwm-x11-rust]
+description = "X11 window manager grouping windows by title/class/OCR affinity (Rust)."
+status = "Valor no auditado / Value not audited"
+
+[repos.cortex9-termica-predictiva]
+ci = false
+description = "C daemon predicting CPU temperature to cap frequency before heavy tasks."
+status = "Control de hardware no verificado / Hardware control not verified — [VERIFICACION.md](https://github.com/federiconbaez/cortex9-termica-predictiva/blob/HEAD/VERIFICACION.md)"
+
+[repos.cortex9-poincare-fs]
+description = "Read-only FUSE filesystem with Poincaré-ball embeddings (Rust)."
+status = "Auditado: valor no demostrado / Audited: value not demonstrated — [AUDIT.md](https://github.com/federiconbaez/cortex9-poincare-fs/blob/HEAD/AUDIT.md)"
