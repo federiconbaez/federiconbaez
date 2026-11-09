@@ -1,10 +1,115 @@
-# Federico Nicolás Báez Rizzo
+# Federico Nicolas Baez Rizzo
 
-**ES:** Ingeniero de sistemas. Rust y C++ sobre Linux: concurrencia lock-free, allocators, io_uring, eBPF/XDP, seccomp e IPC. Cada repo publica sus números y la máquina donde se midieron; los de Cortex-9 enlazan a su auditoría, pase o no.
+**EN:** Linux security engineer working in C, Rust, .NET and Go. Focus areas: seccomp, Landlock, eBPF, io_uring, and OIDC/OAuth2 (DPoP, PKCE, mTLS). Public repos publish measurements, CI, and — for Cortex-9 systems — an honest audit status (pass or fail). Offline educational models of known CVEs are listed below; they are not exploit kits and do not contact third-party targets.
 
-**EN:** Systems engineer. Rust and C++ on Linux: lock-free concurrency, allocators, io_uring, eBPF/XDP, seccomp and IPC. Every repo publishes its numbers and the machine they were measured on; the Cortex-9 ones link to their audit, pass or fail.
+**ES:** Seguridad en Linux con C, Rust, .NET y Go. Enfoque: seccomp, Landlock, eBPF, io_uring y OIDC/OAuth2 (DPoP, PKCE, mTLS). Los repos publican mediciones, CI y el estado de auditoría de Cortex-9. Abajo hay modelos offline educativos de CVEs conocidos (no son kits de explotación).
 
-[federicobaez.com](https://federicobaez.com) · [X @Cortex9Sur](https://x.com/Cortex9Sur) · [LinkedIn](https://www.linkedin.com/in/f-baez)
+[federicobaez.com](https://federicobaez.com) · [X @Cortex9Sur](https://x.com/Cortex9Sur) · [LinkedIn](https://www.linkedin.com/in/f-baez) · [![GitHub](https://img.shields.io/badge/GitHub-federiconbaez-181717?logo=github)](https://github.com/federiconbaez)
+
+## Background
+
+- **Teaching:** former instructor at EducacionIT (Java, MongoDB, Git).
+- **Industry:** Tsoft, Gobierno de la Ciudad de Buenos Aires, Naranja X, Telecom.
+- **Studies:** UTN and FIUBA.
+- **Certifications:** 17 verified HackerRank certifications.
+- **Freelance:** Upwork — Linux and Rust security audits (no rates listed here).
+
+## Selected Cortex-9 systems
+
+Smaller, purpose-built tools that match the focus above. Full audit status for the older Cortex-9 set is in the table further down.
+
+| Repo | Notes |
+|---|---|
+| [cortex9-framework](https://github.com/federiconbaez/cortex9-framework) | One policy, four kernel enforcement points: classifier, XDP, cgroup v2, fanotify exec guard |
+| [cortex9-ask-sandbox](https://github.com/federiconbaez/cortex9-ask-sandbox) | seccomp_unotify supervisor with supervisor-opens + ADDFD (no path TOCTOU) |
+| [cortex9-ebpf-tracer](https://github.com/federiconbaez/cortex9-ebpf-tracer) | Syscall tracer in Rust/aya: ring buffer, pid/comm/syscall filters |
+| [cortex9-dpop-vs-mtls-bench](https://github.com/federiconbaez/cortex9-dpop-vs-mtls-bench) | Measured cost of DPoP vs mTLS vs bearer on loopback |
+| [cortex9-dpop-server-antireplay](https://github.com/federiconbaez/cortex9-dpop-server-antireplay) | Server-side DPoP anti-replay behaviour across verifiers |
+| [cortex9-attenuable-mcp](https://github.com/federiconbaez/cortex9-attenuable-mcp) | Attenuable MCP capability tokens with DPoP-bound delegation |
+| [cortex9-sigstore-exec-gate](https://github.com/federiconbaez/cortex9-sigstore-exec-gate) | Exec gate tied to Sigstore-style verification |
+| [cortex9-landlock-genprof-attack](https://github.com/federiconbaez/cortex9-landlock-genprof-attack) | Landlock+seccomp profile learner with an adversarial escape suite |
+| [cortex9-pidfd-seccomp-auditor](https://github.com/federiconbaez/cortex9-pidfd-seccomp-auditor) | pidfd / seccomp surface auditor |
+
+## CVE practice models (47 offline educational repos)
+
+Differential, offline models of **already-patched** vulnerabilities. Each repo ships `PRACTICE.md` (Spanish), positive/negative/adversarial cases, regenerable `results/`, and GitHub Actions CI with no external network targets. **A model is not a finding and not a reproduction against live systems.**
+
+### JWT / OIDC / signature validation
+
+| Repo | CVE |
+|---|---|
+| [cortex9-pyjwt-pem-detection-alg-confusion-model](https://github.com/federiconbaez/cortex9-pyjwt-pem-detection-alg-confusion-model) | CVE-2026-102268 |
+| [cortex9-fastjwt-empty-key-unsigned-accept-model](https://github.com/federiconbaez/cortex9-fastjwt-empty-key-unsigned-accept-model) | CVE-2026-107720 |
+| [cortex9-authlib-jws-json-empty-signatures-model](https://github.com/federiconbaez/cortex9-authlib-jws-json-empty-signatures-model) | CVE-2026-96760 |
+| [cortex9-vikunja-oidc-email-verified-linking-model](https://github.com/federiconbaez/cortex9-vikunja-oidc-email-verified-linking-model) | CVE-2026-62367 |
+| [cortex9-keycloak-jwt-grant-alg-confusion-model](https://github.com/federiconbaez/cortex9-keycloak-jwt-grant-alg-confusion-model) | CVE-2026-11800 |
+
+### Path traversal, routing and static-file bypass
+
+| Repo | CVE / class |
+|---|---|
+| [cortex9-traefik-replacepathregex-normalization-model](https://github.com/federiconbaez/cortex9-traefik-replacepathregex-normalization-model) | CVE-2026-65600 |
+| [cortex9-echo-static-encoded-segment-bypass-model](https://github.com/federiconbaez/cortex9-echo-static-encoded-segment-bypass-model) | CVE-2026-118650 |
+| [cortex9-nbconvert-output-filename-traversal-model](https://github.com/federiconbaez/cortex9-nbconvert-output-filename-traversal-model) | CVE-2026-114140 |
+| [cortex9-node-tar-path-sanitization-model](https://github.com/federiconbaez/cortex9-node-tar-path-sanitization-model) | CVE-2021-32804, CVE-2021-37713 |
+| [cortex9-archive-path-escape-validator](https://github.com/federiconbaez/cortex9-archive-path-escape-validator) | Zip Slip-class path validator (teaching tool; not a single CVE) |
+| [cortex9-git-case-insensitive-symlink-checkout-model](https://github.com/federiconbaez/cortex9-git-case-insensitive-symlink-checkout-model) | CVE-2021-21300 |
+| [cortex9-git-safe-directory-discovery-model](https://github.com/federiconbaez/cortex9-git-safe-directory-discovery-model) | CVE-2022-24765 |
+
+### SSRF and DNS rebinding
+
+| Repo | CVE |
+|---|---|
+| [cortex9-mlflow-webhook-dns-rebinding-toctou-model](https://github.com/federiconbaez/cortex9-mlflow-webhook-dns-rebinding-toctou-model) | CVE-2026-64849 |
+| [cortex9-phpspreadsheet-redirect-whitelist-ssrf-model](https://github.com/federiconbaez/cortex9-phpspreadsheet-redirect-whitelist-ssrf-model) | CVE-2026-108360 |
+
+### Injection, deserialization and unsafe loaders
+
+| Repo | CVE / note |
+|---|---|
+| [cortex9-pillow-ghostscript-argv-injection-model](https://github.com/federiconbaez/cortex9-pillow-ghostscript-argv-injection-model) | CVE-2026-112900 |
+| [cortex9-argocd-git-ssh-proxy-url-injection-model](https://github.com/federiconbaez/cortex9-argocd-git-ssh-proxy-url-injection-model) | CVE-2026-55797 |
+| [cortex9-trivy-action-envfile-source-injection-model](https://github.com/federiconbaez/cortex9-trivy-action-envfile-source-injection-model) | CVE-2026-26189 |
+| [cortex9-freeform-attribute-twig-render-model](https://github.com/federiconbaez/cortex9-freeform-attribute-twig-render-model) | CVE-2026-73858 |
+| [cortex9-shell-quote-comment-line-terminator-model](https://github.com/federiconbaez/cortex9-shell-quote-comment-line-terminator-model) | CVE-2026-102422 |
+| [cortex9-nltk-pickle-allowlist-prefix-model](https://github.com/federiconbaez/cortex9-nltk-pickle-allowlist-prefix-model) | CVE-2026-79657 |
+| [cortex9-seroval-node-id-type-confusion-model](https://github.com/federiconbaez/cortex9-seroval-node-id-type-confusion-model) | CVE-2026-116580 |
+| [cortex9-pyyaml-unsafe-loader-astlint](https://github.com/federiconbaez/cortex9-pyyaml-unsafe-loader-astlint) | CVE-2017-18342, CVE-2020-1747, CVE-2020-14343 (AST lint) |
+| [cortex9-lodash-defaultsdeep-prototype-pollution-model](https://github.com/federiconbaez/cortex9-lodash-defaultsdeep-prototype-pollution-model) | CVE-2019-10744 |
+| [cortex9-rust-batbadbut-args-model](https://github.com/federiconbaez/cortex9-rust-batbadbut-args-model) | CVE-2024-24576 |
+
+### Memory, integer and crypto-library bugs
+
+| Repo | CVE |
+|---|---|
+| [cortex9-heartbleed-heartbeat-bounds-model](https://github.com/federiconbaez/cortex9-heartbleed-heartbeat-bounds-model) | CVE-2014-0160 |
+| [cortex9-openssl-sm2-plaintext-size-model](https://github.com/federiconbaez/cortex9-openssl-sm2-plaintext-size-model) | CVE-2021-3711 |
+| [cortex9-openssl-asn1-string-nul-scanner](https://github.com/federiconbaez/cortex9-openssl-asn1-string-nul-scanner) | CVE-2021-3712 |
+| [cortex9-openssl-bn-mod-sqrt-loop-model](https://github.com/federiconbaez/cortex9-openssl-bn-mod-sqrt-loop-model) | CVE-2022-0778 |
+| [cortex9-openssl-x400-generalname-type-confusion-model](https://github.com/federiconbaez/cortex9-openssl-x400-generalname-type-confusion-model) | CVE-2023-0286 |
+| [cortex9-libwebp-huffman-table-sizing-model](https://github.com/federiconbaez/cortex9-libwebp-huffman-table-sizing-model) | CVE-2023-4863 |
+| [cortex9-libxml2-strncat-length-wrap-model](https://github.com/federiconbaez/cortex9-libxml2-strncat-length-wrap-model) | CVE-2016-1834 |
+| [cortex9-brotli-uncompressed-copy-narrowing-model](https://github.com/federiconbaez/cortex9-brotli-uncompressed-copy-narrowing-model) | CVE-2020-8927 |
+| [cortex9-glibc-getaddrinfo-dual-buffer-state-model](https://github.com/federiconbaez/cortex9-glibc-getaddrinfo-dual-buffer-state-model) | CVE-2015-7547 |
+| [cortex9-expat-utf8-name-validation-model](https://github.com/federiconbaez/cortex9-expat-utf8-name-validation-model) | CVE-2022-25235 |
+| [cortex9-expat-namespace-separator-model](https://github.com/federiconbaez/cortex9-expat-namespace-separator-model) | CVE-2022-25236 |
+| [cortex9-lz4java-tmp-native-lib-predictable-name-model](https://github.com/federiconbaez/cortex9-lz4java-tmp-native-lib-predictable-name-model) | CVE-2026-106451 |
+| [cortex9-rust-str-repeat-capacity-overflow-model](https://github.com/federiconbaez/cortex9-rust-str-repeat-capacity-overflow-model) | CVE-2018-1000810 |
+| [cortex9-rust-zip-size-hint-overflow-model](https://github.com/federiconbaez/cortex9-rust-zip-size-hint-overflow-model) | CVE-2021-28879 |
+| [cortex9-rust-regex-empty-repetition-size-limit-model](https://github.com/federiconbaez/cortex9-rust-regex-empty-repetition-size-limit-model) | CVE-2022-24713 |
+
+### Races, TOCTOU and protocol state machines
+
+| Repo | CVE |
+|---|---|
+| [cortex9-dirtycow-gup-cow-state-model](https://github.com/federiconbaez/cortex9-dirtycow-gup-cow-state-model) | CVE-2016-5195 |
+| [cortex9-tmpfiles-hardlink-chown-race-model](https://github.com/federiconbaez/cortex9-tmpfiles-hardlink-chown-race-model) | CVE-2017-18078 |
+| [cortex9-time-crate-env-race-interleaving-model](https://github.com/federiconbaez/cortex9-time-crate-env-race-interleaving-model) | CVE-2020-26235 |
+| [cortex9-filelock-sqlite-symlink-follow-model](https://github.com/federiconbaez/cortex9-filelock-sqlite-symlink-follow-model) | CVE-2026-112936 |
+| [cortex9-ksmbd-preauth-info-race-model](https://github.com/federiconbaez/cortex9-ksmbd-preauth-info-race-model) | CVE-2026-72422 |
+| [cortex9-terrapin-strict-kex-model](https://github.com/federiconbaez/cortex9-terrapin-strict-kex-model) | CVE-2023-48795 |
+| [cortex9-http2-rapid-reset-stream-accounting-model](https://github.com/federiconbaez/cortex9-http2-rapid-reset-stream-accounting-model) | CVE-2023-44487 |
+| [cortex9-http2-priority-churn-cost-model](https://github.com/federiconbaez/cortex9-http2-priority-churn-cost-model) | CVE-2019-9513 |
 
 <!-- repo-forge:start -->
 ## Bajo nivel / Low-level systems
@@ -97,4 +202,4 @@ Servidores MCP escritos desde cero (Python stdlib y Rust), validados entre sí p
 
 <!-- repo-forge:end -->
 
-Tablas generadas con / Tables generated with [repo-forge](https://github.com/federiconbaez/repo-forge) `profile render` ([config](repo-forge.toml)). Licencia Apache-2.0 en todos los repos de arriba / Apache-2.0 on every repo above.
+Low-level / MCP / tooling tables above are rendered with [repo-forge](https://github.com/federiconbaez/repo-forge) `profile render` ([config](repo-forge.toml)). Apache-2.0 on those repos. CVE practice models are maintained separately and each carries its own LICENSE and `LIMITATIONS.md`.
